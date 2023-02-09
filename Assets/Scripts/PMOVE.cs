@@ -12,7 +12,7 @@ public class PMOVE : MonoBehaviour
     public float _currenthealth;
     private float timer;
 
-    void start()
+    void Start()
     {
         _currenthealth = _maxhealth;
 
@@ -29,6 +29,12 @@ public class PMOVE : MonoBehaviour
             Shoot();
         }
 
+    }
+
+    [ContextMenu("Daño")]
+    void DoDamage()
+    {
+        Damage(1);
     }
 
     public void Damage(float damageamount)
@@ -74,11 +80,16 @@ public class PMOVE : MonoBehaviour
     void HealthRegen()
     {
         timer += Time.deltaTime;
+        _healthbar.UpdateHealth(_maxhealth, _currenthealth);
 
         if (timer > 4)
         {
             timer = 0;
             _currenthealth += 1;
+        }
+        if(_currenthealth > _maxhealth)
+        {
+            _currenthealth = _maxhealth;
         }
     } 
 

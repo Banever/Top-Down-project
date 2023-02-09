@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
 
     void Update() 
     {
+        HealthRegen();
+;
         if(_currenthealth <= 0)
         {
             Destroy(gameObject);
@@ -51,4 +53,21 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void HealthRegen()
+    {
+        timer += Time.deltaTime;
+        _healthbar.UpdateHealth(_maxhealth, _currenthealth);
+
+        if (timer > 4)
+        {
+            timer = 0;
+            _currenthealth += 1;
+        }
+        if (_currenthealth > _maxhealth)
+        {
+            _currenthealth = _maxhealth;
+        }
+    }
+
 }

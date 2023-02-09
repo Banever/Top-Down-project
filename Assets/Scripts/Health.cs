@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 {
     private Image _image;
     
-    void start()
+    void Start()
     {
         _image = GetComponent<Image>();
 
