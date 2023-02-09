@@ -7,16 +7,19 @@ public class PMOVE : MonoBehaviour
     public Rigidbody2D RB;
     public float vel = 5f;
     private Vector2 Movement;
-    private Health _healthbar;
+    private HealthBarUI _healthbar;
     public float _maxhealth = 6f;
     public float _currenthealth;
     private float timer;
+    public bool healthRegen;
 
-    void start()
+    void Start()
     {
+        Debug.Log("asdfsdf");
         _currenthealth = _maxhealth;
 
-        _healthbar = GetComponentInChildren<Health>();
+        _healthbar = GetComponentInChildren<HealthBarUI>();
+        UpdateHealthBar();
     }
 
     private void Update()
@@ -29,6 +32,11 @@ public class PMOVE : MonoBehaviour
             Shoot();
         }
 
+    }
+    [ContextMenu("Damage")]
+    public void Damage()
+    {
+        Damage(1);
     }
 
     public void Damage(float damageamount)
@@ -73,13 +81,25 @@ public class PMOVE : MonoBehaviour
 
     void HealthRegen()
     {
+        if (!healthRegen)
+            return;
+
         timer += Time.deltaTime;
 
         if (timer > 4)
         {
             timer = 0;
             _currenthealth += 1;
+            if (_currenthealth > _maxhealth)
+                _currenthealth = _maxhealth;
+            UpdateHealthBar();
         }
-    } 
+    }
+
+    [ContextMenu("Update Health Bar")]
+    private void UpdateHealthBar()
+    {
+        _healthbar.UpdateHealth(_maxhealth, _currenthealth);
+    }
 
 }

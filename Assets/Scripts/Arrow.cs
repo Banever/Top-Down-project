@@ -6,12 +6,15 @@ public class Arrow : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D Collision)
     {
-        if (Collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
+        if (Collision.gameObject.CompareTag("Enemy"))
         {
-            enemyComponent.damage(1f);
+            if (Collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
+            {
+                enemyComponent.damage(1f);
+
+            }
+
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
-
     }
 }
