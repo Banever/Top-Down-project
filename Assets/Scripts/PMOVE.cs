@@ -37,6 +37,12 @@ public class PMOVE : MonoBehaviour
         Damage(1);
     }
 
+    public void HealItem(float healamount)
+    {
+        _currenthealth += healamount;
+        _healthbar.UpdateHealth(_maxhealth, _currenthealth);
+    }
+
     public void Damage(float damageamount)
     {
         _currenthealth -= damageamount;
