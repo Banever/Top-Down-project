@@ -12,10 +12,12 @@ public class PMOVE : MonoBehaviour
     public float _currenthealth;
     private float timer;
     public bool healthRegen;
+    public int keys;
+    public event System.Action OnKeyAmountChanged;
+    public bool canMove = true;
 
     void Start()
     {
-        Debug.Log("asdfsdf");
         _currenthealth = _maxhealth;
 
         _healthbar = GetComponentInChildren<HealthBarUI>();
@@ -55,8 +57,13 @@ public class PMOVE : MonoBehaviour
     void ProcessInputs()
     {
         float movex = Input.GetAxisRaw("Horizontal");
-
         float movey = Input.GetAxisRaw("Vertical");
+
+        if (!canMove)
+        {
+            movex = 0;
+            movey = 0;
+        }
 
         Movement = new Vector2(movex, movey);
     }
@@ -99,7 +106,31 @@ public class PMOVE : MonoBehaviour
     [ContextMenu("Update Health Bar")]
     private void UpdateHealthBar()
     {
-        _healthbar.UpdateHealth(_maxhealth, _currenthealth);
+        //_healthbar.UpdateHealth(_maxhealth, _currenthealth);
+    }
+
+    public void IncreaseKeys()
+    {
+        keys++;
+        OnKeyAmountChanged?.Invoke();
+    }
+
+    public void DecreaseKeys() 
+    {
+        keys--;
+        OnKeyAmountChanged?.Invoke();
+    }
+
+    public int GetKeyAmount () { return keys; }
+
+    public override string ToString()
+    {
+        return "asdfgsdghsdfgh";
+    }
+
+    public void SetPlayerMovementState(bool state)
+    {
+        canMove = state;
     }
 
 }
