@@ -5,12 +5,15 @@ using UnityEngine;
 public class PMOVE : MonoBehaviour
 {
     public Rigidbody2D RB;
+    public static PMOVE instance;
     public float vel = 5f;
     private Vector2 Movement;
     private Health _healthbar;
     public float _maxhealth = 6f;
     public float _currenthealth;
     private float timer;
+    public int Keys;
+    public event System.Action OnKeyAmountChanged;
 
     void Start()
     {
@@ -97,6 +100,20 @@ public class PMOVE : MonoBehaviour
         {
             _currenthealth = _maxhealth;
         }
-    } 
+    }
+
+    public void IncreaseKeys()
+    {
+        Keys++;
+        OnKeyAmountChanged?.Invoke();
+    }
+
+    public void DecreaseKeys()
+    {
+        Keys--;
+        OnKeyAmountChanged?.Invoke();
+    }
+
+    public int GetKeyAmount() { return Keys; }
 
 }
