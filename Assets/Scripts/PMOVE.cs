@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PMOVE : MonoBehaviour
@@ -14,6 +15,7 @@ public class PMOVE : MonoBehaviour
     private float timer;
     public int Keys;
     public event System.Action OnKeyAmountChanged;
+    public bool cantmove = true;
 
     void Start()
     {
@@ -65,10 +67,12 @@ public class PMOVE : MonoBehaviour
 
         float movey = Input.GetAxisRaw("Vertical");
 
+       
+
         Movement = new Vector2(movex, movey);
     }
 
-    void FixedUpdate()
+void FixedUpdate()
     {
         Move();
     }

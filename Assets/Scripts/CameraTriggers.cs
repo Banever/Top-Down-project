@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Unity.VisualScripting;
 
 public class CameraTriggers : MonoBehaviour
 {
     public GameObject Camtrigger;
     public CinemachineVirtualCamera VirtualCamera;
     public CinemachineVirtualCamera virtualCamera2;
-    public float TT = 2;
-    public bool IT;
-    private float CTT;
+    public PMOVE player;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,10 +17,8 @@ public class CameraTriggers : MonoBehaviour
         {
             VirtualCamera.Priority = 1;
             virtualCamera2.Priority = 0;
-            IT = true;
-
+            StartCoroutine(TriggerWait());
         }
-        
     }
 
     void SetPriority(int Priority)
@@ -29,11 +26,11 @@ public class CameraTriggers : MonoBehaviour
          VirtualCamera.Priority = Priority;
     }
 
-    private void Update()
+    IEnumerator TriggerWait()
     {
-        CTT += Time.deltaTime;
+        Camtrigger.SetActive(false);
+        yield return new WaitForSeconds(4);
+        Camtrigger.SetActive(true);
+
     }
-    
-
-
 }
