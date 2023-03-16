@@ -10,11 +10,11 @@ public class Health : MonoBehaviour
     void Start()
     {
         _image = GetComponent<Image>();
-
     }
 
     public void UpdateHealth(float maxhealth, float currenthealth)
     {
-        _image.fillAmount = currenthealth / maxhealth;
+        float result = (float)currenthealth / maxhealth;
+        _image.fillAmount = result;
     }
 }
