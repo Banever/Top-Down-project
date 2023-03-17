@@ -16,12 +16,15 @@ public class PMOVE : MonoBehaviour
     public int Keys;
     public event System.Action OnKeyAmountChanged;
     public bool cantmove = true;
+    public bool autoheal;
 
     void Start()
     {
         _currenthealth = _maxhealth;
 
         _healthbar = GetComponentInChildren<Health>();
+        Debug.Log("Sonido");
+        AudioManager.Audio.Playsound();
     }
 
     private void Update()
@@ -92,6 +95,10 @@ void FixedUpdate()
 
     void HealthRegen()
     {
+
+        if (!autoheal)       
+            return;
+        
         timer += Time.deltaTime;
         _healthbar.UpdateHealth(_maxhealth, _currenthealth);
 
