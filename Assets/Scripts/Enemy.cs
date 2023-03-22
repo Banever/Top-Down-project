@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     private float _currenthealth;
     private Health _healthbar;
     private float timer;
+    public Transform RayStart;
+
 
     void Start()
     {
@@ -30,12 +32,20 @@ public class Enemy : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if(timer > 2)
-        {
-            timer = 0;
-            Shoot();
-        }
+        RaycastHit2D hit = Physics2D.Raycast(RayStart.position, Vector2.right);       
+            if (hit.collider.CompareTag("Player"))
+            {
+                
+                if (timer > 2)
+                {
+                    timer = 0;
+                    Shoot();
+                }
+            }
     }
+
+
+
 
     void Shoot()
     {

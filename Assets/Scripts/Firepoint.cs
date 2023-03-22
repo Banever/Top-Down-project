@@ -9,12 +9,12 @@ public class Firepoint : MonoBehaviour
     float Timebetweenshots;
     public float startingtimebetweenshots;
 
-    void start()
+    void Start()
     {
         Timebetweenshots = startingtimebetweenshots;
     }
 
-    void update()
+    void Update()
     {
         if (Timebetweenshots <= 0)
         {

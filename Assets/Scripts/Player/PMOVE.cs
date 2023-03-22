@@ -23,8 +23,8 @@ public class PMOVE : MonoBehaviour
         _currenthealth = _maxhealth;
 
         _healthbar = GetComponentInChildren<Health>();
-        Debug.Log("Sonido");
-        AudioManager.Audio.Playsound();
+        /*Debug.Log("Sonido");
+        AudioManager.Audio.Playsound();*/
     }
 
     private void Update()

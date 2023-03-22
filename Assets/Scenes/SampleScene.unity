@@ -2896,6 +2896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7030494805776745405, guid: 6a3426cc9cec7794389d82486751feb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7030494805776745407, guid: 6a3426cc9cec7794389d82486751feb6, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -3941,6 +3945,7 @@ MonoBehaviour:
   Bullet: {fileID: 4505160418198473316, guid: c6126fc8e3dde774487a23a255624fd1, type: 3}
   Bulletpos: {fileID: 1438443467}
   _maxhealth: 5
+  RayStart: {fileID: 1438443467}
 --- !u!4 &2060485874
 Transform:
   m_ObjectHideFlags: 0
