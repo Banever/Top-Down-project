@@ -9,11 +9,11 @@ public class CameraTriggers : MonoBehaviour
     public GameObject Camtrigger;
     public CinemachineVirtualCamera VirtualCamera;
     public CinemachineVirtualCamera virtualCamera2;
-    public PMOVE player;
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Player"))
+    {              
+
+        if (collision.CompareTag("Player"))
         {
             VirtualCamera.Priority = 1;
             virtualCamera2.Priority = 0;
